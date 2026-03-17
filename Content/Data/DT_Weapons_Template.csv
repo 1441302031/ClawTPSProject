@@ -1,0 +1,8 @@
+Row Name,WeaponID,WeaponName,Damage,FireRate,Range,MagazineSize,ReloadTime,Spread,EquipTime
+AssaultRifle,AR_01,Assault Rifle,25.0,10.0,10000.0,30,2.0,1.0,0.5
+Shotgun,SG_01,Shotgun,80.0,1.0,3000.0,8,2.5,5.0,0.6
+SniperRifle,SR_01,Sniper Rifle,100.0,0.5,50000.0,5,3.0,0.1,0.8
+Pistol,PS_01,Pistol,20.0,5.0,5000.0,12,1.5,1.5,0.3
+SMG,SMG_01,SMG,18.0,15.0,3000.0,40,1.8,2.0,0.4
+LMG,LMG_01,LMG,30.0,8.0,8000.0,100,4.0,1.5,0.7
+DMR,DMR_01,DMR,60.0,3.0,15000.0,20,2.2,0.5,0.6
