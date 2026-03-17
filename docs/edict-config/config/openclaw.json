@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "description": "三省六部 AI 协作系统 - 方案 A（轻量级）",
+  "agents": {
+    "taizi": {
+      "id": "taizi",
+      "name": "太子",
+      "role": "消息分拣",
+      "enabled": true,
+      "model": "dashscope/qwen3.5-plus",
+      "workspace": "./agents/taizi",
+      "sessions": {
+        "visibility": "all"
+      },
+      "permissions": {
+        "can_send_to": ["zhongshu"],
+        "can_receive_from": ["user"]
+      }
+    },
+    "zhongshu": {
+      "id": "zhongshu",
+      "name": "中书省",
+      "role": "规划中枢",
+      "enabled": true,
+      "model": "dashscope/qwen3.5-plus",
+      "workspace": "./agents/zhongshu",
+      "sessions": {
+        "visibility": "all"
+      },
+      "permissions": {
+        "can_send_to": ["menxia", "shangshu"],
+        "can_receive_from": ["taizi"]
+      }
+    },
+    "menxia": {
+      "id": "menxia",
+      "name": "门下省",
+      "role": "审议把关",
+      "enabled": true,
+      "model": "dashscope/qwen3.5-plus",
+      "workspace": "./agents/menxia",
+      "sessions": {
+        "visibility": "all"
+      },
+      "permissions": {
+        "can_send_to": ["shangshu", "zhongshu"],
+        "can_receive_from": ["zhongshu"]
+      }
+    },
+    "shangshu": {
+      "id": "shangshu",
+      "name": "尚书省",
+      "role": "派发调度",
+      "enabled": true,
+      "model": "dashscope/qwen3.5-plus",
+      "workspace": "./agents/shangshu",
+      "sessions": {
+        "visibility": "all"
+      },
+      "permissions": {
+        "can_send_to": ["bingbu", "gongbu", "user"],
+        "can_receive_from": ["menxia", "bingbu", "gongbu"]
+      }
+    },
+    "bingbu": {
+      "id": "bingbu",
+      "name": "兵部",
+      "role": "工程实现",
+      "enabled": true,
+      "model": "dashscope/qwen3.5-plus",
+      "workspace": "./agents/bingbu",
+      "sessions": {
+        "visibility": "all"
+      },
+      "permissions": {
+        "can_send_to": ["shangshu"],
+        "can_receive_from": ["shangshu"]
+      }
+    },
+    "gongbu": {
+      "id": "gongbu",
+      "name": "工部",
+      "role": "基础设施",
+      "enabled": true,
+      "model": "dashscope/qwen3.5-plus",
+      "workspace": "./agents/gongbu",
+      "sessions": {
+        "visibility": "all"
+      },
+      "permissions": {
+        "can_send_to": ["shangshu"],
+        "can_receive_from": ["shangshu"]
+      }
+    }
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "type": "feishu",
+      "default": true
+    }
+  },
+  "schedule": {
+    "daily_report": {
+      "enabled": true,
+      "times": ["09:00", "18:00"],
+      "timezone": "Asia/Shanghai",
+      "channel": "feishu",
+      "target": "ou_30d7579e1bb5da0154be6bae5e03f3c4"
+    }
+  },
+  "git": {
+    "auto_commit": true,
+    "commit_message_format": "feat: {task_description}",
+    "repository": "/home/admin/.openclaw/workspace/ClawTPSProject"
+  }
+}
